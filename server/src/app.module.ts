@@ -6,9 +6,14 @@ import { Message } from './entities/message.entity';
 import { ChatModule } from './chat/chat.module';
 import { UserModule } from './user/user.module';
 import { User } from './entities/user.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../client/build'),
+    }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
